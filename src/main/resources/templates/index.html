@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Shouhao's Notes</title>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="icon" type="image/png" href="/img/favicon.png" />
+    <!-- <link href="//zhoushouhao.com/img/p0" rel="dns-prefetch" /> -->
+</head>
+
+<body>
+    <header id="header">
+        <div class="logo">
+            <a href="http://zhoushouhao.com/">Shouhao's Notes</a>
+        </div>
+    </header>
+
+    <div class="main-area">
+        <div class="main-vision">
+            <img src="/img/p0.jpg" alt="主视觉图" id="mainVision">
+        </div>
+        <div class="main-panel">
+            <div class="catalog">
+                <div class="catalog-bar">
+                    <div class="catalog-post">
+                        Posts
+                    </div>
+                    <a href="allposts.html">
+                        <div class="all-post">
+                            All Posts
+                        </div>
+                    </a>
+                </div>
+                <div class="catalog-main" id="catalog">
+<!--                    <div class="placeholder">-->
+<!--                        可能是后端接口未正确加载，刷新下-->
+<!--                    </div>-->
+
+                    <div th:each="item,index:${Notes}" class="catalog-item">
+                        <a href="javascript:void(0)">
+                            <div class="post-name"
+                                th:title="${item.getHeading()}" th:text="${item.getHeading()}">
+                            </div>
+                        </a>
+                        <div class="post-info">
+                            <div class="tag">
+                                tag.
+                            </div>
+                            <div class="time-info">
+                                <div class="time-post-info" th:text="'Posted on:'+${item.getPublishTime()}">
+                                </div>
+                                <div class="time-edited-info" th:text="'Posted on:'+${item.getPublishTime()}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="catalog-footer">
+
+                    <div class="all-post">
+                        <a href="allposts.html">
+                            All Posts
+                        </a>
+                    </div>
+
+                </div>
+                <!-- ! -->
+            </div>
+            <div class="about-author">
+                <div class="author-bio">
+                    <div class="bio-title">
+                        About author
+                    </div>
+                    <div class="bio-contents">
+                        <div class="img-box">
+                            <img src="/img/Avatar.jpg" alt="Avatar">
+                        </div>
+                        <div class="bio-name">
+                            Zhou Shouhao
+                        </div>
+                        <div class="bio">
+                            A college student.
+                        </div>
+                    </div>
+                </div>
+                <div class="might-access">
+                    <div class="might-access-title">
+                        You might want to visit
+                    </div>
+                    <div class="might-access-content" id="mightAccess">
+                        <div class="might-access-item">
+                            <a href="iFruitCloudMusic/index.html">iFruitCloudMusic</a>
+                        </div>
+                        <div class="might-access-item">
+                            Nothing More.
+                        </div>
+
+                    </div>
+                </div>
+                <div class="my-github-box">
+                    <a href="https://github.com/AlexCZhou" title="This is my GitHub Account">
+                        <div class="my-github right-side-box">
+                            GitHub
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+        <footer>
+            <div class="signature">
+                © Zhou Shouhao
+            </div>
+            <div class="friendly-URLs">
+                friendly URLs: <a href="https://www.cnblogs.com/oeong">oeong</a>
+            </div>
+            <div class="ICP">
+               <a href="http://beian.miit.gov.cn/">闽ICP备18028649号-1</a> 
+            </div>
+        </footer>
+</body>
+<script src="lib/index.js"></script>
+
+</html>
