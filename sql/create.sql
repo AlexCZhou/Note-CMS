@@ -32,12 +32,12 @@ CREATE TABLE cms_notes(
     -- 1:管理员可见,
     -- 2:登录可见,
     -- 3:所有人可见
-    note_status int NOT NULL,
+    note_status int NOT NULL
     -- 0:正常状态遵照restrict
     -- 1:在作者的草稿箱
     -- 2:在作者的回收站中
     -- 3:被作者删除
-    FOREIGN KEY (note_owner) REFERENCES cms_users(user_id)
+    -- CONSTRAINT fk_owner FOREIGN KEY (note_owner) REFERENCES cms_users(user_id)
 )AUTO_INCREMENT=1;
 
 -- 测试数据
@@ -59,3 +59,4 @@ INSERT INTO cms_notes(note_heading,note_publish_time,note_latest_update,note_own
 INSERT INTO cms_notes(note_heading,note_publish_time,note_latest_update,note_owner,note_restrict,note_status) values('标题10',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,'super_admin',3,0);
 INSERT INTO cms_notes(note_heading,note_publish_time,note_latest_update,note_owner,note_restrict,note_status) values('标题11',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,'super_admin',3,0);
 INSERT INTO cms_notes(note_heading,note_publish_time,note_latest_update,note_owner,note_restrict,note_status) values('标题12',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,'super_admin',3,0);
+INSERT INTO cms_notes(note_heading,note_publish_time,note_latest_update,note_owner,note_restrict,note_status) values('不存在',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,'Bob',3,0);
