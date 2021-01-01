@@ -12,16 +12,10 @@
 </head>
 
 <body>
-    <header id="header">
-        <div class="logo">
-            <a href="http://zhoushouhao.com/">Shouhao's Notes</a>
-        </div>
-    </header>
+    <header th:replace="common/common :: header"></header>
 
     <div class="main-area">
-        <div class="main-vision">
-            <img src="/img/p0.jpg" alt="主视觉图" id="mainVision">
-        </div>
+        <div th:replace="common/common::mainVision"></div>
         <div class="main-panel">
             <div class="catalog">
                 <div class="catalog-bar">
@@ -111,17 +105,7 @@
             </div>
         </div>
 
-        <footer>
-            <div class="signature">
-                © Zhou Shouhao
-            </div>
-            <div class="friendly-URLs">
-                friendly URLs: <a href="https://www.cnblogs.com/oeong">oeong</a>
-            </div>
-            <div class="ICP">
-               <a href="http://beian.miit.gov.cn/">闽ICP备18028649号-1</a> 
-            </div>
-        </footer>
+        <footer th:replace="common/common :: footer"></footer>
 </body>
 <script src="lib/index.js"></script>
 

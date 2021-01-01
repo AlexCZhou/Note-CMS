@@ -15,14 +15,32 @@ import java.util.List;
 public class GeneralDaoImpl implements IGeneralDao {
 
     @Override
-    public List<Note> getNotes(int n) {
+    public List<Note> getNotes(int n, int option, int page, int asc) {
         Connection connection = DBUtils.getConn();
         ResultSet reSet;
         List<Note> notes= new ArrayList<>();
-        String sql = "Select * from cms_notes order by note_latest_update limit ?";
+        String sql = "Select * from cms_notes order by %s %s limit ?,?";
+        String op = "note_latest_update";
+        String order = "asc";
+        //判断排序方法
+        switch (option){
+            case 1: op = "note_latest_update";
+            break;
+            case 2: op = "note_publish_time";
+            break;
+            case 3: op = "note_heading";
+            break;
+            case 4: op = "note_owner";
+            break;
+        }
+        if(asc==0){
+            order = "desc";
+        }
+        sql = String.format(sql,op,order);
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1,n);
+            preparedStatement.setInt(1,page*n-n);
+            preparedStatement.setInt(2,n);
             reSet = preparedStatement.executeQuery();
 
             while (reSet.next()){
@@ -40,10 +58,5 @@ public class GeneralDaoImpl implements IGeneralDao {
             e.printStackTrace();
         }
         return notes;
-    }
-
-    @Override
-    public List<Note> getNotes(int n, int option) {
-        return null;
     }
 }

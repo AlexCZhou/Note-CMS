@@ -31,10 +31,9 @@ body {
 header {
     background-color: white;
     color: black;
-    box-shadow: 0px 3px 15px #999999;
+    box-shadow: 0 3px 15px #999999;
     border-bottom: 1px solid #999999;
     height: 64px;
-    width: 100%;
     width: 100%;
     min-width: 1200px;
 }
@@ -79,7 +78,7 @@ footer .ICP a{
 }
 
 .mdstyle {
-    padding: 0px 0px 0px 0px;
+    padding: 0 0 0 0;
 }
 
 .mdstyle code {
@@ -89,8 +88,6 @@ footer .ICP a{
 }
 
 .mdstyle pre {
-    margin: 0;
-    padding: 0;
     background-color: #eeeeee;
     margin: 0 0 20px 0;
 

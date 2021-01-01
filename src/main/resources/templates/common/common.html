@@ -4,14 +4,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Posts - Shouhao's Note</title>
+    <title>Shouhao's Note</title>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/allposts.css">
+    <link rel="icon" type="image/png" href="/img/favicon.png" />
 </head>
 
-<link rel="stylesheet" href="/css/reset.css">
-<link rel="stylesheet" href="/css/allposts.css">
-<link rel="icon" type="image/png" href="/img/favicon.png" />
-
 <body>
+<!--    页眉-->
+<header id="header" th:fragment="header">
+    <div class="logo">
+        <a href="http://zhoushouhao.com/">Shouhao's Notes</a>
+    </div>
+</header>
+<!--    主视觉图微缩版-->
+<div class="main-vision" th:fragment="mainVision">
+    <img src="/img/p0.jpg" alt="主视觉图" id="mainVision">
+</div>
+<!-- 页脚-->
+<footer th:fragment="footer">
+    <div class="signature">
+        © Zhou Shouhao
+    </div>
+    <div class="friendly-URLs">
+        friendly URLs: <a href="https://www.cnblogs.com/oeong">oeong</a>
+    </div>
+    <div class="ICP">
+        <a href="http://beian.miit.gov.cn/">闽ICP备18028649号-1</a>
+    </div>
+</footer>
+
 
 </body>
 </html>
