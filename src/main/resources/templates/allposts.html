@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Posts - Shouhao's Note</title>
     <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/allposts.css">
+    <link rel="stylesheet" href="/css/index.css">
     <link rel="icon" type="image/png" href="/img/favicon.png" />
 </head>
 
@@ -18,7 +18,31 @@
         <div class="main-panel">
             <div class="catalog">
                 <div class="catalog-main" id="catalog">
-                    <!-- here -->
+<!--                    目录项-->
+                    <div th:each="item,index:${Notes}" class="catalog-item">
+                        <a href="javascript:void(0)">
+                            <div class="post-name"
+                                 th:title="${item.getHeading()}" th:text="${item.getHeading()}">
+                            </div>
+                        </a>
+                        <div class="post-info">
+                            <div class="tag">
+                                tag.
+                            </div>
+                            <div class="time-info">
+                                <div class="time-post-info" th:text="'Posted on:'+${item.getPublishTime()}">
+                                </div>
+                                <div class="time-edited-info" th:text="'Posted on:'+${item.getPublishTime()}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+<!--                    翻页-->
+                    <div class="paginate-container">
+                        <div class="button-group">
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

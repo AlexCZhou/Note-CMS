@@ -30,9 +30,10 @@ public class GeneralController {
     public ModelAndView getAllPostsPage(@RequestParam(required = false) String page){
         ModelAndView mav = new ModelAndView();
         if(page==null){
-            page = "1";
+            mav.addObject("Notes",generalService.getNotes(10,1));
+        }else {
+            mav.addObject("Notes", generalService.getNotes(10, 1, page));
         }
-        mav.addObject("Notes",generalService.getNotes(10,1, page));
         mav.setViewName("allposts");
         return mav;
     }

@@ -22,17 +22,13 @@
                     <div class="catalog-post">
                         Posts
                     </div>
-                    <a href="allposts.html">
+                    <a href="allposts">
                         <div class="all-post">
                             All Posts
                         </div>
                     </a>
                 </div>
                 <div class="catalog-main" id="catalog">
-<!--                    <div class="placeholder">-->
-<!--                        可能是后端接口未正确加载，刷新下-->
-<!--                    </div>-->
-
                     <div th:each="item,index:${Notes}" class="catalog-item">
                         <a href="javascript:void(0)">
                             <div class="post-name"
@@ -51,11 +47,12 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <div class="catalog-footer">
 
                     <div class="all-post">
-                        <a href="allposts.html">
+                        <a href="allposts">
                             All Posts
                         </a>
                     </div>
