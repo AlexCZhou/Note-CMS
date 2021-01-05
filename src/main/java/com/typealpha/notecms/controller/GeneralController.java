@@ -21,7 +21,7 @@ public class GeneralController {
     })
     public ModelAndView getIndexPage(){
         ModelAndView mav = new ModelAndView();
-        mav.addObject("Notes",generalService.getNotes(10));//获取最近十篇笔记并渲染
+        mav.addObject("notes",generalService.getNotes(10));//获取最近十篇笔记并渲染
         mav.setViewName("index");
         return mav;
     }
@@ -29,11 +29,19 @@ public class GeneralController {
     @RequestMapping("allposts")
     public ModelAndView getAllPostsPage(@RequestParam(required = false) String page){
         ModelAndView mav = new ModelAndView();
+        //获取当前页数的十个
         if(page==null){
-            mav.addObject("Notes",generalService.getNotes(10,1));
+            mav.addObject("notes",generalService.getNotes(10,1));
+            mav.addObject("currentPage",1);
         }else {
-            mav.addObject("Notes", generalService.getNotes(10, 1, page));
+            mav.addObject("notes", generalService.getNotes(10, 1, page));
+            mav.addObject("currentPage",generalService.parsePositiveInt(page));
         }
+        //获取总共多少页
+        mav.addObject("pageLength",generalService.getPageLength(10));
+        //标记当前页
+
+
         mav.setViewName("allposts");
         return mav;
     }

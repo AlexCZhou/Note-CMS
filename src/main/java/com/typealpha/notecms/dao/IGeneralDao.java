@@ -15,4 +15,10 @@ public interface IGeneralDao {
      * @return
      */
     public List<Note> getNotes(int n, int option, int page, int asc);
+
+    /**
+     * 获取全部的笔记个数
+     * @return 笔记个数
+     */
+    public int getNoteCount();
 }

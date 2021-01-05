@@ -19,7 +19,7 @@ public class GeneralDaoImpl implements IGeneralDao {
         Connection connection = DBUtils.getConn();
         ResultSet reSet;
         List<Note> notes= new ArrayList<>();
-        String sql = "Select * from cms_notes order by %s %s limit ?,?";
+        String sql = "SELECT * FROM cms_notes ORDER BY %s %s limit ?,?";
         String op = "note_latest_update";
         String order = "asc";
         //判断排序方法
@@ -54,9 +54,34 @@ public class GeneralDaoImpl implements IGeneralDao {
                 note.setStatus(reSet.getInt(7));
                 notes.add(note);
             }
-        }catch (SQLException e){
+
+            connection.close();
+            reSet.close();
+        }catch (SQLException e) {
             e.printStackTrace();
         }
         return notes;
+    }
+
+    @Override
+    public int getNoteCount() {
+        Connection connection = DBUtils.getConn();
+        ResultSet reSet;
+        int count=-1;
+        String sql = "Select count(*) From cms_notes;";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            reSet = preparedStatement.executeQuery();
+
+            while (reSet.next()){
+                count = reSet.getInt(1);
+            }
+
+            reSet.close();
+            connection.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return count;
     }
 }

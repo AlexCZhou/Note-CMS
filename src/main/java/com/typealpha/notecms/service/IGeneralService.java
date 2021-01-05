@@ -25,6 +25,18 @@ public interface IGeneralService {
 
     public List<Note> getNotes(int n);
 
+    /**
+     * 获取总共多少页
+     * @param n 每页的个数
+     * @return 总共多少页的页数
+     */
+    public int getPageLength(int n);
 
+    /**
+     * 处理正整数，如果不是正整数返回一
+     * @param s 输入字符串
+     * @return 转换后的正整数或1
+     */
+    public int parsePositiveInt(String s);
 
 }
