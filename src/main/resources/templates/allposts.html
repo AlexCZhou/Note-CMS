@@ -20,7 +20,7 @@
                 <div class="catalog-main" id="catalog">
 <!--                    超出时-->
                     <div class="placeholder" th:if="${currentPage>pageLength||currentPage<1}">
-                        页码错误，请<a href="/index">返回首页</a>
+                        页码错误，请<a href="/">返回首页</a>
                     </div>
 <!--                    目录项-->
                     <div th:each="item,index:${notes}" class="catalog-item">
