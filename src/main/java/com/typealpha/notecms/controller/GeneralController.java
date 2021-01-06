@@ -1,7 +1,14 @@
 package com.typealpha.notecms.controller;
 
 import com.typealpha.notecms.service.IGeneralService;
+
+import com.vladsch.flexmark.util.ast.Node;
+import com.vladsch.flexmark.html.HtmlRenderer;
+import com.vladsch.flexmark.parser.Parser;
+import com.vladsch.flexmark.util.data.MutableDataSet;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,6 +49,22 @@ public class GeneralController {
 
 
         mav.setViewName("allposts");
+        return mav;
+    }
+
+    @RequestMapping("/content/note/{noteID}")
+    public ModelAndView getNotePage(@PathVariable String noteID){
+        ModelAndView mav = new ModelAndView();
+        MutableDataSet option = new MutableDataSet();
+
+        Parser parser = Parser.builder(option).build();
+        HtmlRenderer renderer = HtmlRenderer.builder().build();
+
+        Node document = parser.parse("#hello");
+        String html = renderer.render(document);
+        System.out.println(html);
+
+        mav.setViewName("note");
         return mav;
     }
 
