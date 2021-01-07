@@ -60,9 +60,9 @@ public class GeneralController {
         Parser parser = Parser.builder(option).build();
         HtmlRenderer renderer = HtmlRenderer.builder().build();
 
-        Node document = parser.parse("#hello");
+        Node document = parser.parse("# hello");
         String html = renderer.render(document);
-        System.out.println(html);
+        mav.addObject("test",html);
 
         mav.setViewName("note");
         return mav;

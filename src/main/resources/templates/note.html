@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Shouhao's Notes</title>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/posts.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="icon" type="image/png" href="/static/img/favicon.png"/>
+    <!-- <link href="//zhoushouhao.com/img/p0" rel="dns-prefetch" /> -->
+</head>
+
+<body>
+
+<header th:replace="common/common :: header"></header>
+
+<div class="main-content">
+    <div th:replace="common/common :: mainVisionShort"></div>
+    <!--    文章部分-->
+    <div th:utext="${test}" class="mdstyle main-md"> </div>
+    <!--    目录部分-->
+    <div class="mdstyle md-catalog">
+        <h3>目录</h3>
+        <p>施工中...</p>
+    </div>
+</div>
+<footer th:replace="common/common :: footer"></footer>
+
+
+
+</body>
+
+</html>

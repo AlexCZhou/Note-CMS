@@ -1,18 +1,3 @@
-.main-vision {
-    width: 100%;
-    height: 200px;
-    /* background: url(../img/p0.jpg) center 0 no-repeat;
-        background-size:100%; */
-    min-width: 1200px;
-}
-
-.main-vision img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    object-position: center center;
-}
-
 .main-content {
     min-width: 1200px;
     max-width: 1400px;
