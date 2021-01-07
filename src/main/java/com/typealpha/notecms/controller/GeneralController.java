@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
 @RestController
 public class GeneralController {
 
@@ -55,14 +59,32 @@ public class GeneralController {
     @RequestMapping("/content/note/{noteID}")
     public ModelAndView getNotePage(@PathVariable String noteID){
         ModelAndView mav = new ModelAndView();
-        MutableDataSet option = new MutableDataSet();
 
+        MutableDataSet option = new MutableDataSet();
         Parser parser = Parser.builder(option).build();
         HtmlRenderer renderer = HtmlRenderer.builder().build();
+        String filename = "src\\main\\resources\\static\\note\\%s\\main.md"; //这东西编译以后咋办呀。。。
+        filename = String.format(filename,noteID);
+        String str;
+        String origin="";
+        try {
+            //System.out.println(System.getProperty("user.dir"));
 
-        Node document = parser.parse("# hello");
-        String html = renderer.render(document);
-        mav.addObject("test",html);
+            BufferedReader in = new BufferedReader(new FileReader(filename));
+            while ((str = in.readLine())!=null){
+                System.out.println(str);
+                origin+=str+"\n";
+            }
+            in.close();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        String html="";
+        Node document = parser.parse(origin);
+        html += renderer.render(document);
+        mav.addObject("contents",html);
 
         mav.setViewName("note");
         return mav;

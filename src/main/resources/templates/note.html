@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/posts.css">
     <link rel="stylesheet" href="/css/index.css">
-    <link rel="icon" type="image/png" href="/static/img/favicon.png"/>
+    <link rel="icon" type="image/png" href="/img/favicon.png"/>
     <!-- <link href="//zhoushouhao.com/img/p0" rel="dns-prefetch" /> -->
 </head>
 
@@ -16,14 +16,16 @@
 
 <header th:replace="common/common :: header"></header>
 
-<div class="main-content">
+<div class="main-area">
     <div th:replace="common/common :: mainVisionShort"></div>
-    <!--    文章部分-->
-    <div th:utext="${test}" class="mdstyle main-md"> </div>
-    <!--    目录部分-->
-    <div class="mdstyle md-catalog">
-        <h3>目录</h3>
-        <p>施工中...</p>
+    <div class="main-content">
+        <!--    文章部分-->
+        <div th:utext="${contents}" class="mdstyle main-md"> </div>
+        <!--    目录部分-->
+        <div class="mdstyle md-catalog">
+            <h3>目录</h3>
+            <p>施工中...</p>
+        </div>
     </div>
 </div>
 <footer th:replace="common/common :: footer"></footer>
