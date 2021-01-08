@@ -39,4 +39,10 @@ public interface IGeneralService {
      */
     public int parsePositiveInt(String s);
 
+    /**
+     * 将Markdown转化为Html
+     * @param origin Markdown格式文本
+     * @return Html可以解析的文本
+     */
+    public String parseMarkdownToHtml(String origin);
 }

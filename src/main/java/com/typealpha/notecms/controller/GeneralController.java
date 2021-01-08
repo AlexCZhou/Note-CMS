@@ -1,11 +1,7 @@
 package com.typealpha.notecms.controller;
 
+import com.typealpha.notecms.service.IFileService;
 import com.typealpha.notecms.service.IGeneralService;
-
-import com.vladsch.flexmark.util.ast.Node;
-import com.vladsch.flexmark.html.HtmlRenderer;
-import com.vladsch.flexmark.parser.Parser;
-import com.vladsch.flexmark.util.data.MutableDataSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,15 +10,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 
 @RestController
 public class GeneralController {
 
     @Autowired
     IGeneralService generalService;
+    @Autowired
+    IFileService fileService;
 
     @RequestMapping(value = {
             "",
@@ -60,31 +55,10 @@ public class GeneralController {
     public ModelAndView getNotePage(@PathVariable String noteID){
         ModelAndView mav = new ModelAndView();
 
-        MutableDataSet option = new MutableDataSet();
-        Parser parser = Parser.builder(option).build();
-        HtmlRenderer renderer = HtmlRenderer.builder().build();
         String filename = "src\\main\\resources\\static\\note\\%s\\main.md"; //这东西编译以后咋办呀。。。
         filename = String.format(filename,noteID);
-        String str;
-        String origin="";
-        try {
-            //System.out.println(System.getProperty("user.dir"));
 
-            BufferedReader in = new BufferedReader(new FileReader(filename));
-            while ((str = in.readLine())!=null){
-                System.out.println(str);
-                origin+=str+"\n";
-            }
-            in.close();
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-        String html="";
-        Node document = parser.parse(origin);
-        html += renderer.render(document);
-        mav.addObject("contents",html);
+        mav.addObject("contents",generalService.parseMarkdownToHtml(fileService.readFileToStr(filename)));
 
         mav.setViewName("note");
         return mav;

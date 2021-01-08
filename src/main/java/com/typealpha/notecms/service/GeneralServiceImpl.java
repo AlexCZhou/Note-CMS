@@ -3,6 +3,10 @@ package com.typealpha.notecms.service;
 import com.typealpha.notecms.bean.Note;
 import com.typealpha.notecms.dao.GeneralDaoImpl;
 import com.typealpha.notecms.dao.IGeneralDao;
+import com.vladsch.flexmark.html.HtmlRenderer;
+import com.vladsch.flexmark.parser.Parser;
+import com.vladsch.flexmark.util.ast.Node;
+import com.vladsch.flexmark.util.data.MutableDataSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +30,17 @@ public class GeneralServiceImpl implements IGeneralService {
             num = 1;
         }
         return num;
+    }
+
+    @Override
+    public String parseMarkdownToHtml(String origin) {
+
+        MutableDataSet option = new MutableDataSet();
+        Parser parser = Parser.builder(option).build();
+        HtmlRenderer renderer = HtmlRenderer.builder().build();
+
+        Node document = parser.parse(origin);
+        return renderer.render(document);
     }
 
     @Override
