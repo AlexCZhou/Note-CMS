@@ -15,9 +15,9 @@
 <body>
 
 <header th:replace="common/common :: header"></header>
+<div th:replace="common/common :: mainVisionShort"></div>
 
 <div class="main-area">
-    <div th:replace="common/common :: mainVisionShort"></div>
     <div class="main-content">
         <!--    文章部分-->
         <div th:utext="${contents}" class="mdstyle main-md"> </div>

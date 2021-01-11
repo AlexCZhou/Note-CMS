@@ -26,6 +26,37 @@ body {
     margin: 0;
     color: #24292e;
     background: #fafafa;
+    display: flex;
+    display: -webkit-flex; /* Safari */
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+input[type="text"],
+input[type="password"]{
+    -webkit-appearance:none;
+    -moz-appearance: none;
+
+    width:100%;
+    height: 32px;
+    line-height: 32px;
+
+    vertical-align: middle;
+
+    border-radius: 5px;
+    border: 1px solid #999999;
+    padding: 5px 12px 5px 12px;
+
+    font-size: 14px;
+
+    outline:0;
+
+    transition: box-shadow 0.1s linear;
+}
+input[type="text"]:focus,
+input[type="password"]:focus{
+    border: 1px solid #24292e;
+    box-shadow: 0 0 0 3px rgba(36,41,46,0.3);
 }
 
 header {
@@ -57,111 +88,35 @@ footer{
     width:100%;
     height:150px;
     background: rgb(80, 80, 80);
-    padding: 50px 50px 0 50px;
+    padding: 30px 50px 0 50px;
     min-width: 1200px;
 }
 
 
-footer .signature,.friendly-URLs{
+footer .footer-item{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
     color: white;
 }
-footer .friendly-URLs a{
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
-    color: white;
-    text-decoration: underline;
-}
-footer .ICP a{
+footer .footer-item a{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
     color: white;
     text-decoration: underline;
 }
 
-.mdstyle {
-    padding: 0 0 0 0;
-}
-
-.mdstyle code {
-    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
-    background-color: #eeeeee;
+.general-form{
 
 }
 
-.mdstyle pre {
-    background-color: #eeeeee;
-    margin: 0 0 20px 0;
-
-    padding: 16px;
-    overflow-x: scroll;
+.form-row{
+    height: 60px;
+    margin-bottom: 20px;
 }
 
-.mdstyle h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    margin: 0 0 16px 0;
-    font-weight: 600;
+.form-row-button{
+    height: 32px;
 }
 
-.mdstyle h1,
-h2 {
-    padding: 0 0 9.6px 0;
-    border-bottom: rgb(204, 204, 204) solid 1px;
-}
-
-.mdstyle blockquote {
-    color: #868686;
-
-    border-left: gray solid 4px;
-    margin-left: 0;
-    padding-left: 20px;
-}
-
-.mdstyle s{
-    text-decoration: line-through;
-}
-
-.mdstyle span{
-    color: black;
-    background: black;
-}
-
-.mdstyle span:hover{
-    color:white;
-}
-
-.mdstyle hr {
-    color: rgba(0, 0, 0, 0.3);
-}
-
-.mdstyle table {
-    margin-top: 0;
-    margin-bottom: 16px;
-    border-spacing: 0;
-    border-collapse: collapse;
-    display: block;
-    width: 100%;
-    overflow: auto;
-}
-
-.mdstyle table th,
-.mdstyle table td {
-    padding: 6px 13px;
-    border: 1px solid #dfe2e5;
-}
-
-.mdstyle table tr {
-    background-color: #fff;
-    border-top: 1px solid #c6cbd1;
-}
-
-.mdstyle p{
-    font-size:16px;
-    line-height: 1.6;
-}
-
-.mdstyle img{
-    max-width: 100%;
+.form-attribute{
+    height: 28px;
+    line-height: 28px;
 }

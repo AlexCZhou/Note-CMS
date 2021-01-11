@@ -12,6 +12,7 @@ GRANT ALL PRIVILEGES on NoteCMS.* to NoteCMS_Admin@localhost identified by 'Admi
 CREATE TABLE cms_users(
     user_id VARCHAR(64) PRIMARY KEY NOT NULL,
     user_password VARCHAR(32) NOT NULL, -- 记得加密，等等又忘了
+    user_cookie VARCHAR(128), -- cookie的加密方式是 SHA256（用户名+密码+创建cookie时间）
     user_nickname VARCHAR(32),
     user_bio VARCHAR(256),
     user_authority int NOT NULL
@@ -41,7 +42,7 @@ CREATE TABLE cms_notes(
 )AUTO_INCREMENT=1;
 
 -- 测试数据
-INSERT INTO cms_users values('super_admin','123456','zbc','随便',3);
+INSERT INTO cms_users values('super_admin','1234566AA',null,'zbc','随便',3);
 
 INSERT INTO cms_notes(note_heading,note_publish_time,note_latest_update,note_owner,note_restrict,note_status) values('标题1',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,'super_admin',3,0);
 INSERT INTO cms_notes(note_heading,note_publish_time,note_latest_update,note_owner,note_restrict,note_status) values('标题2',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,'super_admin',3,0);
@@ -148,6 +149,9 @@ INSERT INTO cms_notes(note_heading,note_publish_time,note_latest_update,note_own
 INSERT INTO cms_notes(note_heading,note_publish_time,note_latest_update,note_owner,note_restrict,note_status) values('标题98',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,'super_admin',3,0);
 INSERT INTO cms_notes(note_heading,note_publish_time,note_latest_update,note_owner,note_restrict,note_status) values('标题99',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,'super_admin',3,0);
 INSERT INTO cms_notes(note_heading,note_publish_time,note_latest_update,note_owner,note_restrict,note_status) values('标题100',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,'super_admin',3,0);
+
+INSERT INTO cms_notes(note_heading,note_publish_time,note_latest_update,note_owner,note_restrict,note_status) values('测试用001',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,'super_admin',3,0);
+INSERT INTO cms_notes(note_heading,note_publish_time,note_latest_update,note_owner,note_restrict,note_status) values('Markdown 模板',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,'super_admin',3,0);
 
 
 

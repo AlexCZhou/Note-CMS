@@ -71,6 +71,11 @@ public class GeneralController {
         return mav;
     }
 
-
+    @RequestMapping("loginCheck")
+    public ModelAndView CheckLogin(@RequestParam String username,@RequestParam String password){
+        System.out.println(username);
+        System.out.println(password);
+        return getIndexPage();
+    }
 
 }

@@ -1,3 +1,93 @@
+
+.mdstyle {
+    padding: 0 0 0 0;
+}
+
+.mdstyle code {
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+    background-color: #eeeeee;
+
+}
+
+.mdstyle pre {
+    background-color: #eeeeee;
+    margin: 0 0 20px 0;
+
+    padding: 16px;
+    overflow-x: scroll;
+}
+
+.mdstyle h1,
+.mdstyle h2,
+.mdstyle h3,
+.mdstyle h4,
+.mdstyle h5,
+.mdstyle h6 {
+    margin: 0 0 16px 0;
+    font-weight: 600;
+}
+
+.mdstyle h1,
+.mdstyle h2 {
+    padding: 0 0 10px 0;
+    border-bottom: rgb(204, 204, 204) solid 1px;
+}
+
+.mdstyle blockquote {
+    color: #868686;
+
+    border-left: gray solid 4px;
+    margin-left: 0;
+    padding-left: 20px;
+}
+
+.mdstyle s{
+    text-decoration: line-through;
+}
+
+.mdstyle span{
+    color: black;
+    background: black;
+}
+
+.mdstyle span:hover{
+    color:white;
+}
+
+.mdstyle hr {
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.mdstyle table {
+    margin-top: 0;
+    margin-bottom: 16px;
+    border-spacing: 0;
+    border-collapse: collapse;
+    display: block;
+    width: 100%;
+    overflow: auto;
+}
+
+.mdstyle table th,
+.mdstyle table td {
+    padding: 6px 13px;
+    border: 1px solid #dfe2e5;
+}
+
+.mdstyle table tr {
+    background-color: #fff;
+    border-top: 1px solid #c6cbd1;
+}
+
+.mdstyle p{
+    font-size:16px;
+    line-height: 1.6;
+}
+
+.mdstyle img{
+    max-width: 100%;
+}
+
 .main-content {
     min-width: 1200px;
     max-width: 1400px;

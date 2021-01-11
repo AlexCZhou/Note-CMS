@@ -13,10 +13,9 @@
 
 <body>
     <header th:replace="common/common :: header"></header>
+    <div th:replace="common/common::mainVision"></div>
 
     <div class="main-area">
-
-        <div th:replace="common/common::mainVision"></div>
         <div class="main-panel">
             <div class="catalog">
                 <div class="catalog-bar">
@@ -31,7 +30,7 @@
                 </div>
                 <div class="catalog-main" id="catalog">
                     <div th:each="item,index:${notes}" class="catalog-item">
-                        <a href="javascript:void(0)">
+                        <a th:href="'/content/note/'+${item.getId()}">
                             <div class="post-name"
                                 th:title="${item.getHeading()}" th:text="${item.getHeading()}">
                             </div>
