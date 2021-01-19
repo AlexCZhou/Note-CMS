@@ -12,7 +12,7 @@
 
 
 <body>
-    <header th:replace="common/common :: header"></header>
+    <header th:replace="common/common :: headerLong(${authority})"></header>
     <div th:replace="common/common :: mainVisionShort"></div>
 
     <div class="main-area">
@@ -80,6 +80,6 @@
             </div>
         </div>
     </div>
-    <footer th:replace="common/common :: footer"></footer>
+    <footer th:replace="common/common :: footer(${authority})"></footer>
 </body>
 </html>

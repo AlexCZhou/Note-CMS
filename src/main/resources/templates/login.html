@@ -11,7 +11,7 @@
     <link rel="icon" type="image/png" href="/img/favicon.png" />
     <!-- <link href="//zhoushouhao.com/img/p0" rel="dns-prefetch" /> -->
 </head>
-<header th:replace="common/common :: header"></header>
+<header th:replace="common/common :: headerShort"></header>
 <div th:replace="common/common::mainVisionShort"></div>
 <div class="main-area">
     <div class="login-container">
@@ -31,7 +31,7 @@
         </form>
     </div>
 </div>
-<footer th:replace="common/common :: footer"></footer>
+<footer th:replace="common/common :: footer(${authority})"></footer>
 <body>
 
 </body>

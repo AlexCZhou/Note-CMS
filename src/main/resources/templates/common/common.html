@@ -11,22 +11,72 @@
 </head>
 
 <body>
+
+
 <!--    页眉-->
-<header id="header" th:fragment="header">
-    <div class="logo">
-        <a href="/">Shouhao's Notes</a>
+<header id="header" th:fragment="headerLong(authority)">
+    <div class="header-bar">
+        <div class="logo">
+            <a href="/">Shouhao's Notes</a>
+        </div>
+        <a href="/">
+            <div class="header-item">首页</div>
+        </a>
+        <a href="/">
+            <div class="header-item">全部笔记</div>
+        </a>
+        <a href="/">
+            <div class="header-item">关于作者</div>
+        </a>
+
+    </div>
+    <div class="header-function">
+        <a href="/" th:if="${authority > 0}">
+            <div class="function-item">创作</div>
+        </a>
+        <a href="/" th:if="${authority > 1}">
+            <!--            <img src="/img/Avatar.jpg" class="header-avatar">-->
+            <div class="function-item">网站管理</div>
+        </a>
+
+        <a href="/login" th:if="${authority == 0}">
+            <div class="function-item">登录</div>
+        </a>
     </div>
 </header>
+
+<!--    页眉-简单版本-->
+<header id="headerShort" th:fragment="headerShort">
+    <div class="header-bar">
+        <div class="logo">
+            <a href="/">Shouhao's Notes</a>
+        </div>
+        <a href="/">
+            <div class="header-item">首页</div>
+        </a>
+        <a href="/">
+            <div class="header-item">全部笔记</div>
+        </a>
+        <a href="/">
+            <div class="header-item">关于作者</div>
+        </a>
+    </div>
+</header>
+
 <!--    主视觉图-->
 <div class="main-vision" th:fragment="mainVision">
     <img src="/img/p0.jpg" alt="主视觉图" id="mainVision">
 </div>
+
+
+
+
 <!--    主视觉图微缩版-->
 <div class="main-vision-short" th:fragment="mainVisionShort">
     <img src="/img/p0.jpg" alt="主视觉图" id="mainVisionShort">
 </div>
 <!-- 页脚-->
-<footer th:fragment="footer">
+<footer th:fragment="footer(authority)">
     <div class="footer-item">
         © Zhou Shouhao
     </div>
@@ -37,8 +87,11 @@
         <a href="http://beian.miit.gov.cn/">闽ICP备18028649号-1</a>
     </div>
     <div class="footer-item">
-        <a href="/login">
+        <a href="/login" th:if="${authority==0}">
             login
+        </a>
+        <a href="/logout" th:if="${authority>0}">
+            logout
         </a>
     </div>
 </footer>
