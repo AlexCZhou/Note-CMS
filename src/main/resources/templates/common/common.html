@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shouhao's Note</title>
     <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/index.css">
     <link rel="icon" type="image/png" href="/img/favicon.png" />
 </head>
 
@@ -22,21 +21,17 @@
         <a href="/">
             <div class="header-item">首页</div>
         </a>
-        <a href="/">
-            <div class="header-item">全部笔记</div>
+        <a href="/allposts">
+            <div class="header-item">全部文章</div>
         </a>
-        <a href="/">
+        <a href="/about">
             <div class="header-item">关于作者</div>
         </a>
 
     </div>
     <div class="header-function">
-        <a href="/" th:if="${authority > 0}">
-            <div class="function-item">创作</div>
-        </a>
-        <a href="/" th:if="${authority > 1}">
-            <!--            <img src="/img/Avatar.jpg" class="header-avatar">-->
-            <div class="function-item">网站管理</div>
+        <a href="/manage" th:if="${authority > 0}">
+            <div class="function-item">管理网站</div>
         </a>
     </div>
 </header>

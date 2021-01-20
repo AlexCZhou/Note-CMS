@@ -164,6 +164,42 @@ footer .footer-item a{
     text-decoration: underline;
 }
 
+.main-area{
+    flex:1;
+}
+
+.main-vision{
+    width:100%;
+    height:500px;
+    /* background: url(../img/p0.jpg) center 0 no-repeat;
+    background-size:100%; */
+
+    min-width: 1200px;
+}
+
+.main-vision-short{
+    width:100%;
+    height:200px;
+    /* background: url(../img/p0.jpg) center 0 no-repeat;
+    background-size:100%; */
+
+    min-width: 1200px;
+}
+
+.main-vision img{
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.main-vision-short img{
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    object-position: center center;
+}
+
 .general-form{
 
 }
