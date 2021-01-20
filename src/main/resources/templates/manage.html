@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Shouhao's Notes</title>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="icon" type="image/png" href="/img/favicon.png" />
 </head>
+
 <body>
+
+<header th:replace="common/common :: headerLong(${authority})"></header>
+<div th:replace="common/common :: mainVisionShort"></div>
+
+<div class="main-area">
+
+</div>
+
+<footer th:replace="common/common :: footer(${authority})"></footer>
 
 </body>
 </html>

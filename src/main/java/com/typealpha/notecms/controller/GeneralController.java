@@ -17,6 +17,11 @@ import java.io.IOException;
 @RestController
 public class GeneralController {
 
+    final Integer GUEST = 0;
+    final Integer NORMAL_USER = 1;
+    final Integer ADMIN = 2;
+    final Integer SUPER_ADMIN = 3;
+
     @Autowired
     IGeneralService generalService;
     @Autowired
@@ -77,8 +82,6 @@ public class GeneralController {
                                      @CookieValue(value = "user_status",defaultValue = "Guest") String user_status,
                                      HttpServletRequest request, HttpServletResponse response){
         //已经登录的用户不要再重复登录了
-        System.out.println(user_id);
-        System.out.println(user_status);
         if(checkLoginStatus(user_id,user_status)!=0){
             try {
                 response.sendRedirect("/");
@@ -130,18 +133,44 @@ public class GeneralController {
         }
     }
 
-    @RequestMapping("/test")
-    public ModelAndView test(@CookieValue(value = "user_id",defaultValue = "Guest") String user_id,
-                             @CookieValue(value = "user_status",defaultValue = "Guest") String user_status){
+    @RequestMapping("/manage")
+    public ModelAndView getManagePage(@CookieValue(value = "user_id",defaultValue = "Guest") String user_id,
+                                      @CookieValue(value = "user_status",defaultValue = "Guest") String user_status,
+                                      HttpServletResponse response){
+        //防止有人用自己输入的cookie蒙混过关
+        if(userService.verifyCookie(user_id,user_status)) {
+            //检查一下是否有权限进入管理页面
+            authorityCheck(userService.getCurrentUser(user_id).getAuthority(),ADMIN,"/",response);
+        }else{
+            try {
+                response.sendRedirect("/");
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+        }
         ModelAndView mav = new ModelAndView();
+        mav.addObject("authority",checkLoginStatus(user_id,user_status));
 
-        System.out.println(user_id);
-        System.out.println(user_status);
-
-        mav.addObject("notes",generalService.getNotes(10));//获取最近十篇笔记并渲染
-        mav.setViewName("index");
         return mav;
     }
+
+    @RequestMapping("/logout")
+    public void logout(HttpServletResponse response){
+        Cookie userCookie = new Cookie("user_id",null);
+        userCookie.setMaxAge(0);
+        userCookie.setPath("/");
+        Cookie userStatus = new Cookie("user_status",null);
+        userStatus.setMaxAge(0);
+        userStatus.setPath("/");
+        response.addCookie(userCookie);
+        response.addCookie(userStatus);
+        try {
+            response.sendRedirect("/");
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
 
     /**
      * 验证cookie，返回登录状态
@@ -163,22 +192,6 @@ public class GeneralController {
         return result;
     }
 
-    @RequestMapping("/logout")
-    public void logout(HttpServletResponse response){
-        Cookie userCookie = new Cookie("user_id",null);
-        userCookie.setMaxAge(0);
-        userCookie.setPath("/");
-        Cookie userStatus = new Cookie("user_status",null);
-        userStatus.setMaxAge(0);
-        userStatus.setPath("/");
-        response.addCookie(userCookie);
-        response.addCookie(userStatus);
-        try {
-            response.sendRedirect("/");
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-    }
 
     private void authorityCheck(int currentAuthority, int authorityRequired, String redirectTo,HttpServletResponse response){
         if(currentAuthority < authorityRequired){
