@@ -163,6 +163,22 @@ public class GeneralController {
         return result;
     }
 
+    @RequestMapping("/logout")
+    public void logout(HttpServletResponse response){
+        Cookie userCookie = new Cookie("user_id",null);
+        userCookie.setMaxAge(0);
+        userCookie.setPath("/");
+        Cookie userStatus = new Cookie("user_status",null);
+        userStatus.setMaxAge(0);
+        userStatus.setPath("/");
+        response.addCookie(userCookie);
+        response.addCookie(userStatus);
+        try {
+            response.sendRedirect("/");
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
 
     private void authorityCheck(int currentAuthority, int authorityRequired, String redirectTo,HttpServletResponse response){
         if(currentAuthority < authorityRequired){
