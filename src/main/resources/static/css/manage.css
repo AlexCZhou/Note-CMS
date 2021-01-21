@@ -1,0 +1,104 @@
+.container{
+    font-size: 0;
+    width: 1200px;
+    margin: auto;
+    padding: 30px 0 30px 0;
+}
+.left-col{
+    vertical-align: top;
+    display: inline-block;
+    width: 800px;
+}
+.manage-nav-bar{
+    width: 800px;
+    height: 32px;
+    border-bottom: 1px solid #c6cbd1;
+}
+.manage-nav-bar-item{
+    color: #24292e;
+    display: inline-block;
+    min-width: 96px;
+    font-size: 16px;
+    line-height: 32px;
+    text-align: center;
+}
+.manage-nav-bar-item:hover{
+    border-bottom: 2px solid #c6cbd1;
+}
+
+.manage-nav-bar-item-selected{
+    border-bottom: 2px solid #678cc6;
+}
+.manage-nav-bar-item-selected:hover{
+    border-bottom: 2px solid #678cc6;
+}
+
+.recent-posts{
+    padding: 20px 0 20px 0;
+    display: inline-block;
+    width: 800px;
+}
+.recent-posts-heading{
+    font-size: 16px;
+    padding: 0 0 0 10px;
+}
+.recent-posts-item{
+    display: inline-block;
+    width: 360px;
+    height: 120px;
+    margin: 10px 10px 10px 10px;
+    padding: 15px 15px 15px 15px;
+    border: 1px solid #868686;
+    border-radius: 6px;
+}
+.posts-name{
+    height: 50px;
+    font-size: 18px;
+}
+.posts-tags{
+    font-size: 16px;
+    line-height: 20px;
+    text-align: right;
+}
+.latest-update{
+    font-size: 16px;
+    line-height: 20px;
+    color: #868686;
+    text-align: right;
+}
+.right-col{
+    vertical-align: top;
+    display: inline-block;
+    width: 400px;
+}
+
+.user-info{
+    display: inline-block;
+    width:400px;
+    padding: 0 50px 0 50px;
+}
+
+.user-avatar{
+    display: inline-block;
+    width: 300px;
+    height: 300px;
+    margin-bottom: 20px;
+}
+
+.user-avatar img{
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+}
+.user-nickname{
+    font-size: 28px;
+    font-weight: 600;
+}
+.user-id{
+    font-size: 25px;
+    color:#868686;
+}
+.user-bio{
+    padding: 20px 0 20px 0;
+    font-size: 16px;
+}

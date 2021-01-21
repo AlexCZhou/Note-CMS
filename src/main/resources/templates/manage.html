@@ -6,16 +6,63 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Shouhao's Notes</title>
     <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/manage.css">
     <link rel="icon" type="image/png" href="/img/favicon.png" />
 </head>
 
 <body>
 
-<header th:replace="common/common :: headerLong(${authority})"></header>
+<header th:replace="common/common :: headerShort"></header>
 <div th:replace="common/common :: mainVisionShort"></div>
 
 <div class="main-area">
+    <div class="container">
 
+        <div class="left-col">
+            <div class="manage-nav-bar">
+                <a href="">
+                    <div class="manage-nav-bar-item manage-nav-bar-item-selected">
+                        Overview
+                    </div>
+                </a>
+                <a href="?tab=posts">
+                    <div class="manage-nav-bar-item">
+                        Posts
+                    </div>
+                </a>
+            </div>
+
+            <div class="recent-posts">
+                <div class="recent-posts-heading">
+                    最近的文章
+                </div>
+                <div th:each="num:${#numbers.sequence(1,6)}" class="recent-posts-item">
+                    <a href="javascript:void(0)">
+                        <div class="posts-name" th:text="'POSTS_NAME_'+${num}"></div>
+                    </a>
+
+                    <div class="posts-tags">
+                        tag: alex,alex,alex...
+                    </div>
+                    <div class="latest-update">
+                        2021-1-21
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-col">
+            <div class="user-info">
+                <div class="user-avatar">
+                    <img src="/img/Avatar.jpg">
+                </div>
+                <div class="user-nickname">USER_NICKNAME</div>
+                <div class="user-id">USER_ID</div>
+                <div class="user-bio">USER_BIO. MAXIMUM 256 VARCHAR. TEST TEST 正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文</div>
+                <button class="form-row-button">EDIT</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <footer th:replace="common/common :: footer(${authority})"></footer>

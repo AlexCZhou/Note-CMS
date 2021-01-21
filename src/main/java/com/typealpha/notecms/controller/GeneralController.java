@@ -150,7 +150,7 @@ public class GeneralController {
         }
         ModelAndView mav = new ModelAndView();
         mav.addObject("authority",checkLoginStatus(user_id,user_status));
-
+        mav.setViewName("manage");
         return mav;
     }
 
