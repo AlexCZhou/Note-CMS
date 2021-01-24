@@ -174,6 +174,23 @@ public class GeneralController {
         }
     }
 
+    @RequestMapping("/content/new")
+    public ModelAndView getNewInitPage(@CookieValue(value = "user_id",defaultValue = "Guest") String user_id,
+                                       @CookieValue(value = "user_status",defaultValue = "Guest") String user_status,
+                                       HttpServletResponse response){
+        if(userService.verifyCookie(user_id,user_status)) {
+            //检查一下是否有权限进入管理页面
+            authorityCheck(userService.getCurrentUser(user_id).getAuthority(),ADMIN,"/",response);
+        }else{
+            try {
+                response.sendRedirect("/");
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+        }
+
+
+    }
 
     /**
      * 验证cookie，返回登录状态
