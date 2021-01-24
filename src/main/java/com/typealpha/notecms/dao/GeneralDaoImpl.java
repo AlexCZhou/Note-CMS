@@ -68,7 +68,7 @@ public class GeneralDaoImpl implements IGeneralDao {
         Connection connection = DBUtils.getConn();
         ResultSet reSet;
         int count=-1;
-        String sql = "Select count(*) From cms_notes;";
+        String sql = "SELECT count(*) FROM cms_notes;";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             reSet = preparedStatement.executeQuery();
@@ -83,5 +83,28 @@ public class GeneralDaoImpl implements IGeneralDao {
             e.printStackTrace();
         }
         return count;
+    }
+
+    @Override
+    public boolean createNote(String noteHeading,String currentUserID) {
+        boolean result = false;
+        Connection connection = DBUtils.getConn();
+        ResultSet reSet;
+        String sql = "INSERT INTO " +
+                "cms_notes(note_heading,note_publish_time,note_latest_update,note_owner,note_restrict,note_status) " +
+                "values(?,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,?,3,1)";
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,noteHeading);
+            preparedStatement.setString(2,currentUserID);
+            int row = preparedStatement.executeUpdate();
+            if(row!=0){
+                result = true;
+            }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return result;
     }
 }

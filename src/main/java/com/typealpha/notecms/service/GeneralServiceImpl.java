@@ -44,6 +44,23 @@ public class GeneralServiceImpl implements IGeneralService {
     }
 
     @Override
+    public boolean createContent(String heading,String currentUserID) {
+        boolean result = false;
+        //先在数据库执行创建操作，以便获取文件ID作为创建的文件名
+        generalDao.createNote(heading,currentUserID);
+        //获取最新的文章的ID
+        //这里其实存在一个问题，多个用户同时创建文章时，可能出现编辑了其他人的文章的问题。
+        Note note =  generalDao.getNotes(1,1,1,1).get(0);
+
+        if(note!=null) {//需要进行没有文章的处理，显然没有文章的时候应该是逻辑出错误了
+            int noteID = note.getId();
+            //在static/note/中创建目录，以noteID命名，该文章的所有资源都将放置在此目录下
+
+        }
+        return false;
+    }
+
+    @Override
     public List<Note> getNotes(int n, int option, int page, int asc) {
         return generalDao.getNotes(n,option,page,asc);
     }

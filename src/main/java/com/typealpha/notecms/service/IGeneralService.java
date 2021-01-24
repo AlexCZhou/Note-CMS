@@ -45,4 +45,11 @@ public interface IGeneralService {
      * @return Html可以解析的文本
      */
     public String parseMarkdownToHtml(String origin);
+
+    /**
+     * 创建新的内容
+     * @param heading 该内容的标题
+     * @return 创建是否成功
+     */
+    public boolean createContent(String heading, String currentUserID);
 }
