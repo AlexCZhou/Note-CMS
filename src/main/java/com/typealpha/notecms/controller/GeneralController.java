@@ -137,17 +137,10 @@ public class GeneralController {
     public ModelAndView getManagePage(@CookieValue(value = "user_id",defaultValue = "Guest") String user_id,
                                       @CookieValue(value = "user_status",defaultValue = "Guest") String user_status,
                                       HttpServletResponse response){
-        //防止有人用自己输入的cookie蒙混过关
-        if(userService.verifyCookie(user_id,user_status)) {
-            //检查一下是否有权限进入管理页面
-            authorityCheck(userService.getCurrentUser(user_id).getAuthority(),ADMIN,"/",response);
-        }else{
-            try {
-                response.sendRedirect("/");
-            }catch (IOException e){
-                e.printStackTrace();
-            }
-        }
+
+        //检查一下是否有权限进入管理页面
+        authorityCheck(user_id,user_status,ADMIN,"/",response);
+
         ModelAndView mav = new ModelAndView();
         mav.addObject("notes",generalService.getNotes(6));
         //这一步不需要进行验证，没登陆的用户是不会到这里的。在这之前就被重定向了。
@@ -178,18 +171,24 @@ public class GeneralController {
     public ModelAndView getNewInitPage(@CookieValue(value = "user_id",defaultValue = "Guest") String user_id,
                                        @CookieValue(value = "user_status",defaultValue = "Guest") String user_status,
                                        HttpServletResponse response){
-        if(userService.verifyCookie(user_id,user_status)) {
-            //检查一下是否有权限进入管理页面
-            authorityCheck(userService.getCurrentUser(user_id).getAuthority(),ADMIN,"/",response);
-        }else{
-            try {
-                response.sendRedirect("/");
-            }catch (IOException e){
-                e.printStackTrace();
-            }
-        }
 
+        //检查一下是否有权限进入管理页面
+        authorityCheck(user_id,user_status,ADMIN,"/",response);
 
+        ModelAndView mav = new ModelAndView();
+
+        mav.setViewName("contentInit");
+        mav.addObject("authority",userService.getCurrentUser(user_id).getAuthority());
+        return mav;
+
+    }
+
+    @RequestMapping("/content/create")
+    public void createNewContent(@RequestParam(name = "contentHeading") String contentHeading,
+                                 @CookieValue(value = "user_id",defaultValue = "Guest") String user_id,
+                                 @CookieValue(value = "user_status",defaultValue = "Guest") String user_status,
+                                 HttpServletResponse response){
+        System.out.println(contentHeading);
     }
 
     /**
@@ -213,8 +212,19 @@ public class GeneralController {
     }
 
 
-    private void authorityCheck(int currentAuthority, int authorityRequired, String redirectTo,HttpServletResponse response){
-        if(currentAuthority < authorityRequired){
+    private void authorityCheck(String user_id,String user_status, int authorityRequired, String redirectTo,HttpServletResponse response){
+        boolean permit = false;
+        int currentAuthority = 0;
+        //先检查一下当前的id和cookie是否匹配，防止有人用自己乱输入的id和cookie蒙混过关
+        if(userService.verifyCookie(user_id,user_status)){
+            currentAuthority = userService.getCurrentUser(user_id).getAuthority();
+            if(currentAuthority >= authorityRequired){
+                permit = true;
+            }
+
+        }
+
+        if(!permit){
             try {
                 response.sendRedirect(redirectTo);
             }catch (IOException e){

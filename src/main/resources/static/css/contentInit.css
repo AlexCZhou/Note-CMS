@@ -1,0 +1,26 @@
+.new-content-form{
+    width: 1200px;
+    margin: auto;
+    padding: 30px 0 30px 0;
+}
+.input-tips{
+    padding: 5px 0 5px 0;
+    font-size: 16px;
+    line-height: 16px;
+    color: #868686;
+}
+.init-button-row{
+    text-align: right;
+    padding: 30px 0 0 0;
+}
+.create-draft{
+
+}
+.init-button{
+    display: inline-block;
+    height: 32px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 16px;
+    border:1px solid #999999;
+}
