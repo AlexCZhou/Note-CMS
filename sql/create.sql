@@ -40,6 +40,11 @@ CREATE TABLE cms_notes(
     -- 3:被作者删除
     -- CONSTRAINT fk_owner FOREIGN KEY (note_owner) REFERENCES cms_users(user_id)
 )AUTO_INCREMENT=1;
+-- 这个表用来存储网站的设置数据
+CREATE TABLE cms_setting(
+    sys_version VARCHAR(64) NOT NULL
+);
+
 
 -- 测试数据
 -- 密码是1234566AA
