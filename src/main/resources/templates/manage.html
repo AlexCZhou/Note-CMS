@@ -57,7 +57,9 @@
                 </div>
                 <div class="user-nickname" th:text="${userInfo.getNickname()}">USER_NICKNAME</div>
                 <div class="user-id" th:text="${userInfo.getId()}">USER_ID</div>
-                <div class="user-bio" th:text="${userInfo.getBio()}">USER_BIO. MAXIMUM 256 VARCHAR. TEST TEST 正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文</div>
+                <div class="user-authority super-admin" th:if="${userInfo.getAuthority()==3}">超级管理员</div>
+                <div class="user-authority" th:if="${userInfo.getAuthority()==2}">管理员</div>
+                <div class="user-bio" th:text="${userInfo.getBio()}">USER_BIO. MAXIMUM 256 VARCHAR. TEST 正文</div>
                 <button class="form-row-button" onclick="JavaScript:alert('编辑功能暂未上线');">EDIT</button>
             </div>
         </div>
