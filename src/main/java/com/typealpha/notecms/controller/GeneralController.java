@@ -149,6 +149,9 @@ public class GeneralController {
             }
         }
         ModelAndView mav = new ModelAndView();
+        mav.addObject("notes",generalService.getNotes(6));
+        //这一步不需要进行验证，没登陆的用户是不会到这里的。在这之前就被重定向了。
+        mav.addObject("userInfo",userService.getCurrentUser(user_id));
         mav.addObject("authority",checkLoginStatus(user_id,user_status));
         mav.setViewName("manage");
         return mav;

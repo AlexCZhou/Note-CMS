@@ -36,16 +36,15 @@
                 <div class="recent-posts-heading">
                     最近的文章
                 </div>
-                <div th:each="num:${#numbers.sequence(1,6)}" class="recent-posts-item">
-                    <a href="javascript:void(0)">
-                        <div class="posts-name" th:text="'POSTS_NAME_'+${num}"></div>
+                <div th:each="note:${notes}" class="recent-posts-item">
+                    <a th:href="'/content/note/'+${note.getId()}">
+                        <div class="posts-name" th:text="${note.getHeading()}"></div>
                     </a>
 
                     <div class="posts-tags">
-                        tag: alex,alex,alex...
+                        tags: 标签功能暂未上线.
                     </div>
-                    <div class="latest-update">
-                        2021-1-21
+                    <div class="latest-update" th:text="${note.getLatestUpdate()}">
                     </div>
                 </div>
             </div>
@@ -56,10 +55,10 @@
                 <div class="user-avatar">
                     <img src="/img/Avatar.jpg">
                 </div>
-                <div class="user-nickname">USER_NICKNAME</div>
-                <div class="user-id">USER_ID</div>
-                <div class="user-bio">USER_BIO. MAXIMUM 256 VARCHAR. TEST TEST 正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文</div>
-                <button class="form-row-button">EDIT</button>
+                <div class="user-nickname" th:text="${userInfo.getNickname()}">USER_NICKNAME</div>
+                <div class="user-id" th:text="${userInfo.getId()}">USER_ID</div>
+                <div class="user-bio" th:text="${userInfo.getBio()}">USER_BIO. MAXIMUM 256 VARCHAR. TEST TEST 正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文</div>
+                <button class="form-row-button" onclick="JavaScript:alert('编辑功能暂未上线');">EDIT</button>
             </div>
         </div>
     </div>
