@@ -27,6 +27,7 @@ public class FileUtils {
     public static boolean createDirectory(String dirname){
         boolean result = false;
         File dir = new File(dirname);
+        System.out.println(dirname);
         if(dir.exists()){
             System.out.println("已存在目录");
         }else{

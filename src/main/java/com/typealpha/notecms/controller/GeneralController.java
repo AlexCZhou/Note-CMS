@@ -185,7 +185,9 @@ public class GeneralController {
                                  @CookieValue(value = "user_id",defaultValue = "Guest") String user_id,
                                  @CookieValue(value = "user_status",defaultValue = "Guest") String user_status,
                                  HttpServletResponse response){
-        System.out.println(contentHeading);
+        authorityCheck(user_id,user_status,ADMIN,"/",response);
+
+        generalService.createContent(contentHeading,userService.getCurrentUser(user_id).getId());
     }
 
     /**
