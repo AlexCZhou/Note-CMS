@@ -52,4 +52,12 @@ public interface IGeneralService {
      * @return 创建是否成功
      */
     public boolean createContent(String heading, String currentUserID);
+
+
+    /**
+     * 读入文件
+     * @param filename 文件名
+     * @return 整个文件的内容
+     */
+    public String readFileToStr(String filename);
 }

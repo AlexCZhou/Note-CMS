@@ -3,6 +3,7 @@ package com.typealpha.notecms.service;
 import com.typealpha.notecms.bean.Note;
 import com.typealpha.notecms.dao.GeneralDaoImpl;
 import com.typealpha.notecms.dao.IGeneralDao;
+import com.typealpha.notecms.utils.FileUtils;
 import com.vladsch.flexmark.html.HtmlRenderer;
 import com.vladsch.flexmark.parser.Parser;
 import com.vladsch.flexmark.util.ast.Node;
@@ -58,6 +59,11 @@ public class GeneralServiceImpl implements IGeneralService {
 
         }
         return false;
+    }
+
+    @Override
+    public String readFileToStr(String filename) {
+        return FileUtils.readFileToStr(filename);
     }
 
     @Override

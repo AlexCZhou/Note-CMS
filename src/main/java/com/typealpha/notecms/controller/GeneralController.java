@@ -1,6 +1,5 @@
 package com.typealpha.notecms.controller;
 
-import com.typealpha.notecms.service.IFileService;
 import com.typealpha.notecms.service.IGeneralService;
 
 import com.typealpha.notecms.service.IUserService;
@@ -24,8 +23,6 @@ public class GeneralController {
 
     @Autowired
     IGeneralService generalService;
-    @Autowired
-    IFileService fileService;
     @Autowired
     IUserService userService;
 
@@ -70,7 +67,7 @@ public class GeneralController {
         String filename = "src\\main\\resources\\static\\note\\%s\\main.md"; //这东西编译以后咋办呀。。。
         filename = String.format(filename,noteID);
 
-        mav.addObject("contents",generalService.parseMarkdownToHtml(fileService.readFileToStr(filename)));
+        mav.addObject("contents",generalService.parseMarkdownToHtml(generalService.readFileToStr(filename)));
 
         mav.addObject("authority",checkLoginStatus(user_id,user_status));
         mav.setViewName("note");
