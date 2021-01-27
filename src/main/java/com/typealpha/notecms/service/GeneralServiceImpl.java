@@ -10,6 +10,7 @@ import com.vladsch.flexmark.util.ast.Node;
 import com.vladsch.flexmark.util.data.MutableDataSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.yaml.snakeyaml.nodes.NodeId;
 
 import java.util.List;
 
@@ -73,6 +74,12 @@ public class GeneralServiceImpl implements IGeneralService {
     @Override
     public String readFileToStr(String filename) {
         return FileUtils.readFileToStr(filename);
+    }
+
+    @Override
+    public Note getNote(String noteID) {
+        int id = parsePositiveInt(noteID);
+        return generalDao.getNote(id);
     }
 
     @Override

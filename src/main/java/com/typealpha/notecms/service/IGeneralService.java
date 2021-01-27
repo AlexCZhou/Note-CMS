@@ -60,4 +60,11 @@ public interface IGeneralService {
      * @return 整个文件的内容
      */
     public String readFileToStr(String filename);
+
+    /**
+     * 获取某篇文章
+     * @param noteID 文章id
+     * @return 文章
+     */
+    public Note getNote(String noteID);
 }

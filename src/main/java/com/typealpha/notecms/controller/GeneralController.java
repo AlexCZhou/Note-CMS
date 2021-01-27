@@ -1,5 +1,6 @@
 package com.typealpha.notecms.controller;
 
+import com.typealpha.notecms.bean.Note;
 import com.typealpha.notecms.service.IGeneralService;
 
 import com.typealpha.notecms.service.IUserService;
@@ -61,15 +62,24 @@ public class GeneralController {
     @RequestMapping("/content/note/{noteID}")
     public ModelAndView getNotePage(@CookieValue(value = "user_id",defaultValue = "Guest") String user_id,
                                     @CookieValue(value = "user_status",defaultValue = "Guest") String user_status,
-                                    @PathVariable String noteID){
+                                    @PathVariable String noteID,HttpServletResponse response){
         ModelAndView mav = new ModelAndView();
+        //检查文章是否存在，防止用户直接输入地址访问空白页面
+        Note note = generalService.getNote(noteID);
+        if(note==null){
+            mav.addObject("contents",generalService.parseMarkdownToHtml("# 您访问的文章不存在! \n[返回首页](/)"));
+        }else {
+            //检查一下是否有权限访问文章
+            authorityCheck(user_id, user_status, note.getRestrict(), "/", response);
 
-        String filename = "src\\main\\resources\\static\\note\\%s\\main.md"; //这东西编译以后咋办呀。。。
-        filename = String.format(filename,noteID);
 
-        mav.addObject("contents",generalService.parseMarkdownToHtml(generalService.readFileToStr(filename)));
+            String filename = "src\\main\\resources\\static\\note\\%s\\main.md"; //这东西编译以后咋办呀。。。
+            filename = String.format(filename, noteID);
 
-        mav.addObject("authority",checkLoginStatus(user_id,user_status));
+            mav.addObject("contents", generalService.parseMarkdownToHtml(generalService.readFileToStr(filename)));
+
+            mav.addObject("authority", checkLoginStatus(user_id, user_status));
+        }
         mav.setViewName("note");
         return mav;
     }

@@ -33,4 +33,10 @@ public interface IGeneralDao {
      */
     public boolean createNote(String noteHeading, String currentUserID);
 
+    /**
+     * 获取某篇文章
+     * @param noteID 文章id
+     * @return 文章
+     */
+    public Note getNote(int noteID);
 }

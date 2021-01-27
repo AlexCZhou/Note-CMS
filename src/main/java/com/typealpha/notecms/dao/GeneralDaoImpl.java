@@ -45,13 +45,7 @@ public class GeneralDaoImpl implements IGeneralDao {
 
             while (reSet.next()){
                 Note note = new Note();
-                note.setId(reSet.getInt(1));
-                note.setHeading(reSet.getString(2));
-                note.setPublishTime(reSet.getTimestamp(3));
-                note.setLatestUpdate(reSet.getTimestamp(4));
-                note.setOwner(reSet.getString(5));
-                note.setRestrict(reSet.getInt(6));
-                note.setStatus(reSet.getInt(7));
+                setNote(note, reSet);
                 notes.add(note);
             }
 
@@ -89,7 +83,6 @@ public class GeneralDaoImpl implements IGeneralDao {
     public boolean createNote(String noteHeading,String currentUserID) {
         boolean result = false;
         Connection connection = DBUtils.getConn();
-        ResultSet reSet;
         String sql = "INSERT INTO " +
                 "cms_notes(note_heading,note_publish_time,note_latest_update,note_owner,note_restrict,note_status) " +
                 "values(?,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,?,0,1)";
@@ -101,10 +94,40 @@ public class GeneralDaoImpl implements IGeneralDao {
             if(row!=0){
                 result = true;
             }
-
+            connection.close();
         }catch (SQLException e){
             e.printStackTrace();
         }
         return result;
+    }
+
+    @Override
+    public Note getNote(int noteID) {
+        Note note = null;
+        Connection connection = DBUtils.getConn();
+        ResultSet reSet;
+        String sql = "SELECT * FROM cms_notes WHERE note_id = ?";
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1,noteID);
+            reSet = preparedStatement.executeQuery();
+            while (reSet.next()){
+                note = new Note();
+                setNote(note, reSet);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return note;
+    }
+
+    private void setNote(Note note, ResultSet reSet) throws SQLException {
+        note.setId(reSet.getInt(1));
+        note.setHeading(reSet.getString(2));
+        note.setPublishTime(reSet.getTimestamp(3));
+        note.setLatestUpdate(reSet.getTimestamp(4));
+        note.setOwner(reSet.getString(5));
+        note.setRestrict(reSet.getInt(6));
+        note.setStatus(reSet.getInt(7));
     }
 }
