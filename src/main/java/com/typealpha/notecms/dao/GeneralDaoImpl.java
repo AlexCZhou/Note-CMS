@@ -92,7 +92,7 @@ public class GeneralDaoImpl implements IGeneralDao {
         ResultSet reSet;
         String sql = "INSERT INTO " +
                 "cms_notes(note_heading,note_publish_time,note_latest_update,note_owner,note_restrict,note_status) " +
-                "values(?,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,?,3,1)";
+                "values(?,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,?,0,1)";
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1,noteHeading);

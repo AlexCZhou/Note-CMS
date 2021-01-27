@@ -32,7 +32,8 @@
                     </a>
                 </div>
                 <div class="catalog-main" id="catalog">
-                    <div th:each="item,index:${notes}" class="catalog-item">
+                    <div th:each="item,index:${notes}" class="catalog-item"
+                         th:if="${item.getStatus()==0 && item.getRestrict()}">
                         <a th:href="'/content/note/'+${item.getId()}">
                             <div class="post-name"
                                 th:title="${item.getHeading()}" th:text="${item.getHeading()}">
