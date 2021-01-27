@@ -24,6 +24,7 @@
         <div class="mdstyle md-catalog">
             <h3>目录</h3>
             <p>施工中...</p>
+            <a th:if="${authority>1}" th:href="'content/edit/'+${noteID}">编辑文章</a>
         </div>
     </div>
 </div>

@@ -71,8 +71,6 @@ public class GeneralController {
         }else {
             //检查一下是否有权限访问文章
             authorityCheck(user_id, user_status, note.getRestrict(), "/", response);
-
-
             String filename = "src\\main\\resources\\static\\note\\%s\\main.md"; //这东西编译以后咋办呀。。。
             filename = String.format(filename, noteID);
 
@@ -190,8 +188,8 @@ public class GeneralController {
 
     }
 
-    @RequestMapping("/content/create")
-    public ModelAndView createNewContent(@RequestParam(name = "contentHeading") String contentHeading,
+    @RequestMapping("/content/create}")
+    public void createNewContent(@RequestParam(name = "contentHeading") String contentHeading,
                                  @CookieValue(value = "user_id",defaultValue = "Guest") String user_id,
                                  @CookieValue(value = "user_status",defaultValue = "Guest") String user_status,
                                  HttpServletResponse response){
@@ -201,6 +199,16 @@ public class GeneralController {
 
         ModelAndView mav = new ModelAndView();
 
+
+    }
+    @RequestMapping("/content/edit/{NoteID}")
+    public ModelAndView getEditPage(@PathVariable String NoteID,
+                                    @CookieValue(value = "user_id",defaultValue = "Guest") String user_id,
+                                    @CookieValue(value = "user_status",defaultValue = "Guest") String user_status,
+                                    HttpServletResponse response){
+        authorityCheck(user_id,user_status,ADMIN,"/",response);
+
+        ModelAndView mav = new ModelAndView();
         mav.addObject("authority",userService.getCurrentUser(user_id).getAuthority());
         mav.setViewName("contentEdit");
         return mav;
