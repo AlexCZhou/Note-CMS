@@ -66,7 +66,7 @@
 .recent-posts-item{
     display: inline-block;
     width: 360px;
-    height: 120px;
+    height: 150px;
     margin: 10px 10px 10px 10px;
     padding: 15px 15px 15px 15px;
     border: 1px solid #868686;
@@ -75,6 +75,10 @@
 .posts-name{
     height: 50px;
     font-size: 18px;
+}
+.posts-status{
+    height: 30px;
+    font-size: 14px;
 }
 .posts-tags{
     font-size: 16px;

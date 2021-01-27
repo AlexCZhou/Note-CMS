@@ -46,7 +46,8 @@
                     <a th:href="'/content/note/'+${note.getId()}">
                         <div class="posts-name" th:text="${note.getHeading()}"></div>
                     </a>
-
+                    <div th:if="${note.getStatus()==0}" class="posts-status">已发表</div>
+                    <div th:if="${note.getStatus()==1}" class="posts-status">草稿状态</div>
                     <div class="posts-tags">
                         tags: 标签功能暂未上线.
                     </div>

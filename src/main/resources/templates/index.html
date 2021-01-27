@@ -33,7 +33,8 @@
                 </div>
                 <div class="catalog-main" id="catalog">
                     <div th:each="item,index:${notes}" class="catalog-item"
-                         th:if="${item.getStatus()==0 && item.getRestrict()}">
+                         th:if="${item.getStatus()==0 && item.getRestrict()<=authority}">
+<!--                        在这里处理权限多少有点不合理，之后再改吧-->
                         <a th:href="'/content/note/'+${item.getId()}">
                             <div class="post-name"
                                 th:title="${item.getHeading()}" th:text="${item.getHeading()}">

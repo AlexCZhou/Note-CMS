@@ -29,10 +29,10 @@ CREATE TABLE cms_notes(
     note_latest_update DATETIME NOT NULL,
     note_owner VARCHAR(64) NOT NULL, -- 作者id
     note_restrict int NOT NULL,
-    -- 3:只有最高管理员可见,
-    -- 2:管理员可见,
+    -- 0:所有人可见,
     -- 1:登录可见,
-    -- 0:所有人可见
+    -- 2:管理员可见,
+    -- 3:只有最高管理员可见
     note_status int NOT NULL
     -- 0:正常状态遵照restrict
     -- 1:在作者的草稿箱

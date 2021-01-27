@@ -181,13 +181,19 @@ public class GeneralController {
     }
 
     @RequestMapping("/content/create")
-    public void createNewContent(@RequestParam(name = "contentHeading") String contentHeading,
+    public ModelAndView createNewContent(@RequestParam(name = "contentHeading") String contentHeading,
                                  @CookieValue(value = "user_id",defaultValue = "Guest") String user_id,
                                  @CookieValue(value = "user_status",defaultValue = "Guest") String user_status,
                                  HttpServletResponse response){
         authorityCheck(user_id,user_status,ADMIN,"/",response);
 
         generalService.createContent(contentHeading,userService.getCurrentUser(user_id).getId());
+
+        ModelAndView mav = new ModelAndView();
+
+        mav.addObject("authority",userService.getCurrentUser(user_id).getAuthority());
+        mav.setViewName("contentEdit");
+        return mav;
     }
 
     /**
